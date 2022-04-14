@@ -2,7 +2,10 @@ import { InitialDTO } from "../../models/InitialDTO"
 
 const INITIAL_STATE:InitialDTO ={
     activePokemon:{},
-    pokemons:[]
+    pokemons:[{
+        name: "",
+        url: ""
+    }]
 }
 
 const pokemonReducer = (state = INITIAL_STATE, action:any) =>{
@@ -12,6 +15,7 @@ const pokemonReducer = (state = INITIAL_STATE, action:any) =>{
             pokemons: action.pokemons
         }
     }
+    return state
 }
 
 export default pokemonReducer;
