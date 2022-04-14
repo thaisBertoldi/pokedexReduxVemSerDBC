@@ -2,19 +2,28 @@ import { InitialDTO } from "../../models/InitialDTO"
 
 const INITIAL_STATE:InitialDTO ={
     activePokemon:{},
-    pokemons:[{
+    pokemonsToList:[{
         name: "",
         url: ""
-    }]
+    }],
+    pokemonsDetails:[]
 }
 
 const pokemonReducer = (state = INITIAL_STATE, action:any) =>{
+    console.log(state, "state reducer")
     if(action.type === 'GET_POKEMON'){
         return{
             ...state,
-            pokemons: action.pokemons
+            pokemonsToList: action.pokemonsToList,   
         }
     }
+    if(action.type === 'GET_DETAILS_POKEMONS'){
+        return{
+            ...state,
+            pokemonsDetails: [...state.pokemonsDetails, action.pokemonsDetails]
+        }
+    }
+
     return state
 }
 

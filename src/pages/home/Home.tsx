@@ -4,36 +4,45 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 function Home(reducer: any) {
-  const { pokemons, dispatch } = reducer;
+  const { pokemonsToList, dispatch, pokemonsDetails } = reducer;
   // const [dataobj, setData] = useState<arrayPoke | null>();
+  console.log(reducer)
 
-  // const tryPoke = async (variavel: any) => {
-  //   try {
-  //     const { data } = await axios.get(`${variavel}`);
-  //     console.log(data, "esse aqui");
-  //     // setData(data);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+  const mapear = () => {
+    //     arrayPokemons.map(async (e:any) => {
+    //         try {
+    //           const { data } = await axios.get(`${e.url}`);
+                
+              
+    //         } catch (error) {
+    //           console.log(error);
+    //         }
+            
+    //     })
+          
+    //   }
+  }
 
   return (
     <div>
       <h1>Pokemons</h1>
-      <button onClick={() => getPokemon(dispatch)}>Catch Pokemon</button>
-      {pokemons.map((e: any, index: number) => {
+      <button onClick={() => getPokemon(pokemonsToList, dispatch)}>Catch Pokemon</button>
+      {pokemonsDetails.map((e: any) => {
         return (
-          <div key={index}>
+          <div key={e.id} className={e.type}>
             <p>{e.name}</p>
+            <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${e.id}.png`} />
           </div>
         );
       })}
+      <button onClick={()=> console.log(pokemonsDetails)}/>
     </div>
   );
 }
 
 const mapStateToProps = (state: any) => ({
-  pokemons: state.pokemonReducer.pokemons,
+  pokemonsToList: state.pokemonReducer.pokemonsToList,
+  pokemonsDetails: state.pokemonReducer.pokemonsDetails
 });
 
 export default connect(mapStateToProps)<any>(Home);

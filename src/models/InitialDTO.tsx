@@ -1,7 +1,10 @@
 export interface InitialDTO{
     activePokemon:{},
-    pokemons: [{
+    pokemonsToList: [{
         name: string,
         url: string
-    }]
+    }],
+    pokemonsDetails:[
+       
+    ]
 }
