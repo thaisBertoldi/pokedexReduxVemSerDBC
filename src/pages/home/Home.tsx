@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 
 function Home(reducer: any) {
   const { pokemons, dispatch } = reducer;
-  console.log(pokemons);
   // const [dataobj, setData] = useState<arrayPoke | null>();
 
   // const tryPoke = async (variavel: any) => {
