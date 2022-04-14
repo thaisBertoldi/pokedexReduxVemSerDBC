@@ -8,21 +8,6 @@ function Home(reducer: any) {
   // const [dataobj, setData] = useState<arrayPoke | null>();
   console.log(reducer)
 
-  const mapear = () => {
-    //     arrayPokemons.map(async (e:any) => {
-    //         try {
-    //           const { data } = await axios.get(`${e.url}`);
-                
-              
-    //         } catch (error) {
-    //           console.log(error);
-    //         }
-            
-    //     })
-          
-    //   }
-  }
-
   return (
     <div>
       <h1>Pokemons</h1>
@@ -32,6 +17,7 @@ function Home(reducer: any) {
           <div key={e.id} className={e.type}>
             <p>{e.name}</p>
             <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${e.id}.png`} />
+            <p>{e.types[0].type.name}</p>
           </div>
         );
       })}
