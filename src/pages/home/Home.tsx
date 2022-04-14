@@ -3,35 +3,32 @@ import { connect } from "react-redux";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-interface arrayPoke {
-  id: number;
-}[]
+function Home(reducer: any) {
+  const { pokemons, dispatch } = reducer;
+  // const [dataobj, setData] = useState<arrayPoke | null>();
 
-function Home(pokemons: any) {
-  const arrayPokemons = pokemons.pokemons;
-  const { dispatch } = pokemons;
-  console.log(arrayPokemons, "olá");
-  const [arrayId, setArrayId] = useState<arrayPoke | null>()
-
-  const mapear = () => {
-    arrayPokemons.map(async (e:any) => {
-        try {
-          const { data } = await axios.get(`${e.url}`);
-            arrayId.push(data.id)
-          
-        } catch (error) {
-          console.log(error);
-        }
-        
-    })
-      
-  }
+  // const tryPoke = async (variavel: any) => {
+  //   try {
+  //     const { data } = await axios.get(`${variavel}`);
+  //     console.log(data, "esse aqui");
+  //     // setData(data);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   return (
-    <>
-      <button onClick={() => getPokemon(dispatch)}>get pokemon</button>
-      {arrayPokemons.map}
-    </>
+    <div>
+      <h1>Pokemons</h1>
+      <button onClick={() => getPokemon(dispatch)}>Catch Pokemon</button>
+      {pokemons.map((e: any, index: number) => {
+        return (
+          <div key={index}>
+            <p>{e.name}</p>
+          </div>
+        );
+      })}
+    </div>
   );
 }
 
