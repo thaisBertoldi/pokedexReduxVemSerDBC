@@ -4,7 +4,7 @@ import { InitialDTO } from "../../models/InitialDTO"
 
 export const getPokemon = async (state:any, dispatch:any) =>{
     try {
-        const { data } = await api.get('')
+        const { data } = await api.get('/?offset=0&limit=160')
         console.log('chamou aqui')
         const obj = {
             type: 'GET_POKEMON',
@@ -35,3 +35,4 @@ export const getPokemons = async (state:any, dispatch:any) =>{
     })
     
 }
+

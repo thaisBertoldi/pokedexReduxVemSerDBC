@@ -1,7 +1,7 @@
 import { getPokemon } from "../../store/actions/PokemonActions";
 import { connect } from "react-redux";
 import { useEffect } from "react";
-import { ColorPokemon } from "../../AllPages.styles";
+import { ColorPokemon, ImgHome, NamePokemon } from "../../AllPages.styles";
 
 function Home(reducer: any) {
   const { pokemonsToList, dispatch, pokemonsDetails } = reducer;
@@ -16,13 +16,12 @@ function Home(reducer: any) {
       {pokemonsDetails.map((e: any) => {
         return (
             <ColorPokemon key={e.id} type={e.types[0].type.name}>
-              <p>{e.name}</p>
-              <p>{e.id}</p>
-              <img
+              <div><p>{e.id}</p></div>
+              <ImgHome
                 src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${e.id}.png`}
                 alt="Imagem do pokemon"
               />
-              <p>{e.types[0].type.name}</p>
+              <NamePokemon><p>{e.name}</p></NamePokemon>
             </ColorPokemon>
         );
       })}
