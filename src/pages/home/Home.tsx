@@ -17,7 +17,7 @@ function Home(reducer: any) {
       {pokemonsDetails.map((e: any) => {
         return (
             <ColorPokemon key={e.id} type={e.types[0].type.name}>
-              <div><p>{e.id}</p></div>
+              <div><p>{e.id < 10 ? `#00${e.id}` : e.id < 100 ? `#0${e.id}` : `#${e.id}`}</p></div>
               <ImgHome
                 src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${e.id}.png`}
                 alt="Imagem do pokemon"
