@@ -9,77 +9,77 @@ export const ColorPokemon = styled.div<{type:any}>`
     switch (props.type) {
       case "grass":
         return css`
-            background-color: green;
+            background-color: #7AC74C;
             break;
             `;
       case "fire":
         return css`
-                background-color: red;
+                background-color: #EE8130;
                 break-inside;
             `;
       case "water":
         return css`
-                background-color: blue;
+                background-color: #6390F0;
                 break-inside;
             `;
       case "bug":
         return css`
-                background-color: red;
+                background-color: #A6B91A;
                 break-inside;
             `;
       case "normal":
         return css`
-                background-color: red;
+                background-color: #A8A77A;
                 break-inside;
             `;
       case "poison":
         return css`
-                background-color: red;
+                background-color: #A33EA1;
                 break-inside;
             `;
       case "electric":
         return css`
-                background-color: red;
+                background-color: #F7D02C;
                 break-inside;
             `;
       case "ground":
         return css`
-                background-color: red;
+                background-color: #E2BF65;
                 break-inside;
             `;
       case "fairy":
         return css`
-                background-color: red;
+                background-color: #D685AD;
                 break-inside;
             `;
       case "fighting":
         return css`
-                background-color: red;
+                background-color: #C22E28;
                 break-inside;
             `;
       case "psychic":
         return css`
-                background-color: red;
+                background-color: #F95587;
                 break-inside;
             `;
       case "rock":
         return css`
-                background-color: red;
+                background-color: #B6A136;
                 break-inside;
             `;
       case "ghost":
         return css`
-                background-color: red;
+                background-color: #735797;
                 break-inside;
             `;
       case "ice":
         return css`
-                background-color: red;
+                background-color: #96D9D6;
                 break-inside;
             `;
       case "dragon":
         return css`
-                background-color: red;
+                background-color: #6F35FC;
                 break-inside;
             `;
 
