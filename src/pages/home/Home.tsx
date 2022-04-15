@@ -1,19 +1,45 @@
 import { getPokemon } from "../../store/actions/PokemonActions";
 import { connect } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { ColorPokemon, ImgHome, NamePokemon, FullPageHome, ContainerPokemon, StyledLink } from "../../AllPages.styles";
+
 
 
 function Home(reducer: any) {
   const { pokemonsToList, dispatch, pokemonsDetails } = reducer;
+  const [ search, setSearch ] = useState<string>('')
 
   useEffect(() => {
+    if(pokemonsToList.length === 1){
     getPokemon(pokemonsToList, dispatch);
+    }
   }, []);
+
+  useEffect(() => {
+    findPokemon()
+  },[search])
+
+  const findPokemon = () =>{
+    console.log(search)
+    const searchedPokemons = pokemonsToList.filter( (e:any) =>
+      e.name.includes(search)
+    )
+    
+  }
+
+  // const setupSearch = (e:any) => {
+  //   setSearch(e);
+  //   console.log(search)
+  //   findPokemon();
+  // }
 
   return (
     <FullPageHome>
       <h1>Pokemons</h1>
+      <input onChange={(e) => setSearch(e.target.value)} value={search} list='pokeSearch'/>
+      <datalist id='pokeSearch'>
+        
+      </datalist>
       <ContainerPokemon>
       {pokemonsDetails.map((e: any) => {
         return (
