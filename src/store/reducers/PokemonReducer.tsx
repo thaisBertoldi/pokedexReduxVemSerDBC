@@ -10,7 +10,6 @@ const INITIAL_STATE:InitialDTO ={
 }
 
 const pokemonReducer = (state = INITIAL_STATE, action:any) =>{
-    console.log(state, "state reducer")
     if(action.type === 'GET_POKEMON'){
         return{
             ...state,

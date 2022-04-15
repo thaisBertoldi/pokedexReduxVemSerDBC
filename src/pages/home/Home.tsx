@@ -17,6 +17,7 @@ function Home(reducer: any) {
         return (
             <ColorPokemon key={e.id} type={e.types[0].type.name}>
               <p>{e.name}</p>
+              <p>{e.id}</p>
               <img
                 src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${e.id}.png`}
                 alt="Imagem do pokemon"
@@ -25,7 +26,6 @@ function Home(reducer: any) {
             </ColorPokemon>
         );
       })}
-      <button onClick={() => console.log(pokemonsDetails)} />
     </div>
   );
 }

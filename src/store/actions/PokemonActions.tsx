@@ -5,6 +5,7 @@ import { InitialDTO } from "../../models/InitialDTO"
 export const getPokemon = async (state:any, dispatch:any) =>{
     try {
         const { data } = await api.get('')
+        console.log('chamou aqui')
         const obj = {
             type: 'GET_POKEMON',
             pokemonsToList: data.results
@@ -23,7 +24,6 @@ export const getPokemons = async (state:any, dispatch:any) =>{
     state.pokemonsToList.map(async (e:any)=>{
         try{
             const {data} = await axios.get(`${e.url}`)
-            console.log(data)
             const obj = {
                 type:"GET_DETAILS_POKEMONS",
                 pokemonsDetails: data
