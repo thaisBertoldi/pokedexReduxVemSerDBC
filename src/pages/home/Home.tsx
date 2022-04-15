@@ -1,7 +1,7 @@
 import { getPokemon } from "../../store/actions/PokemonActions";
 import { connect } from "react-redux";
 import { useEffect } from "react";
-import { ColorPokemon, ImgHome, NamePokemon } from "../../AllPages.styles";
+import { ColorPokemon, ImgHome, NamePokemon, FullPageHome, ContainerPokemon } from "../../AllPages.styles";
 
 function Home(reducer: any) {
   const { pokemonsToList, dispatch, pokemonsDetails } = reducer;
@@ -11,8 +11,9 @@ function Home(reducer: any) {
   }, []);
 
   return (
-    <div>
+    <FullPageHome>
       <h1>Pokemons</h1>
+      <ContainerPokemon>
       {pokemonsDetails.map((e: any) => {
         return (
             <ColorPokemon key={e.id} type={e.types[0].type.name}>
@@ -25,7 +26,8 @@ function Home(reducer: any) {
             </ColorPokemon>
         );
       })}
-    </div>
+      </ContainerPokemon>
+    </FullPageHome>
   );
 }
 
