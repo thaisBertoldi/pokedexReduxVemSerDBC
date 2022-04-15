@@ -2,12 +2,15 @@ import { getPokemon } from "../../store/actions/PokemonActions";
 import { connect } from "react-redux";
 import { useEffect, useState } from "react";
 import { ColorPokemon, ImgHome, NamePokemon, FullPageHome, ContainerPokemon, StyledLink } from "../../AllPages.styles";
+import { useNavigate } from "react-router-dom";
 
 
 
 function Home(reducer: any) {
   const { pokemonsToList, dispatch, pokemonsDetails } = reducer;
   const [ search, setSearch ] = useState<string>('')
+  const [ searchedPokemons, setSearchedPokemons ] = useState<any>([])
+  const navigate = useNavigate()
 
   useEffect(() => {
     if(pokemonsToList.length === 1){
@@ -21,25 +24,36 @@ function Home(reducer: any) {
 
   const findPokemon = () =>{
     console.log(search)
-    const searchedPokemons = pokemonsToList.filter( (e:any) =>
-      e.name.includes(search)
+    setSearchedPokemons(pokemonsDetails.filter( (e:any) =>
+      e.name.includes(search))
     )
     
   }
 
-  // const setupSearch = (e:any) => {
-  //   setSearch(e);
-  //   console.log(search)
-  //   findPokemon();
-  // }
+   const selectPokemon = () =>{
+    const poke = searchedPokemons.find((e:any)=>
+      e.name === search
+    )
+    navigate(`/detail/${poke.id}`)
+  }
+
+  const setupNavigate = (e: any) => {
+    e.preventDefault();
+    selectPokemon();
+  };
+
 
   return (
     <FullPageHome>
       <h1>Pokemons</h1>
+      <form onSubmit={(e)=> setupNavigate(e)}>
       <input onChange={(e) => setSearch(e.target.value)} value={search} list='pokeSearch'/>
-      <datalist id='pokeSearch'>
-        
+      <datalist id='pokeSearch' onClick={(e)=> setupNavigate(e)}>
+      {searchedPokemons.length > 0 ? searchedPokemons.map((e:any) =>(
+        // <option value={e.name}>{e.name}</option>)
+      <option value={e.name} key={`search${e.id}`} />)) : (<option value='oi' />)}
       </datalist>
+      </form>
       <ContainerPokemon>
       {pokemonsDetails.map((e: any) => {
         return (
