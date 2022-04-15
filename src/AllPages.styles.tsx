@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import { Link } from "react-router-dom";
 
 export const ColorPokemon = styled.div<{ type: any }>`
   width: 300px;
@@ -328,3 +329,7 @@ export const ContainerPokemon = styled.div`
   grid-template-columns: 300px 300px 300px;
   gap: 20px;
 `;
+
+export const StyledLink = styled(Link)`
+ text-decoration: none;
+`
