@@ -4,7 +4,22 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
 import { ImgHome } from "../../AllPages.styles";
+import imgPokeball from "../../images/Pokeball.png";
 import axios from "axios";
+import {
+  AllInfoESpan,
+  ColorDetail,
+  DivProgressStats,
+  DivType,
+  ImgDetail,
+  ImgPokeball,
+  InfoDetailContainer,
+  InfoDetailText,
+  InfoESpan,
+  InfoESpanSemBorda,
+  LinkArrow,
+  TitleDetail,
+} from "./Detail.styles";
 
 function Detail(reducer: any) {
   const { pokemonsToList, dispatch, pokemonsDetails } = reducer;
@@ -42,14 +57,15 @@ function Detail(reducer: any) {
   };
 
   return (
-    <>
-      <Link to="/">
-        <FaArrowLeft />
-      </Link>
+    <div>
       {pokemonById.map((poke: any) => {
         return (
-          <div>
-            <div>
+          <ColorDetail type={poke.types[0].type.name} key={poke.id}>
+            <TitleDetail>
+              <LinkArrow to="/">
+                <FaArrowLeft />
+              </LinkArrow>
+              <h1>{poke.name}</h1>
               <p>
                 {poke.id < 10
                   ? `#00${poke.id}`
@@ -57,34 +73,63 @@ function Detail(reducer: any) {
                   ? `#0${poke.id}`
                   : `#${poke.id}`}
               </p>
+            </TitleDetail>
+            <div>
+              <ImgPokeball src={imgPokeball} />
+              <ImgDetail
+                src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${poke.id}.png`}
+                alt="Imagem do pokemon"
+              />
             </div>
-            <h1>{poke.name}</h1>
-            <ImgHome
-              src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${poke.id}.png`}
-              alt="Imagem do pokemon"
-            />
-            <p>{poke.types[0].type.name}</p>
-            <h5>About</h5>
-            <p>{poke.weight} kg</p>
-            <span>Weight</span>
-            <p>{poke.height} kg</p>
-            <span>Height</span>
-            {poke.abilities.map((ability: any) => {
-              return <p>{ability.ability.name}</p>;
-            })}
-            <span>Moves</span>
-            <p>{description}</p>
-            <h5>Base Stats</h5>
-            <p>HP: {poke.stats[0].base_stat}</p>
-            <p>ATK: {poke.stats[1].base_stat}</p>
-            <p>DEF: {poke.stats[2].base_stat}</p>
-            <p>SATK: {poke.stats[3].base_stat}</p>
-            <p>SDEF: {poke.stats[4].base_stat}</p>
-            <p>SPD: {poke.stats[5].base_stat}</p>
-          </div>
+            <InfoDetailContainer>
+              <DivType type={poke.types[0].type.name}>
+                <p>{poke.types[0].type.name}</p>
+                <h2>About</h2>
+              </DivType>
+              <InfoDetailText>
+                <AllInfoESpan>
+
+                  <InfoESpan>
+                    <p>{poke.weight} kg</p>
+                    <span>Weight</span>
+                  </InfoESpan>
+
+                  <InfoESpan>
+                    <p>{poke.height} kg</p>
+                    <span>Height</span>
+                  </InfoESpan>
+
+                  <InfoESpanSemBorda>
+                    {poke.abilities.map((ability: any) => {
+                      return <p>{ability.ability.name}</p>;
+                    })}
+                    <span>Moves</span>
+                  </InfoESpanSemBorda>
+
+                </AllInfoESpan>
+                <p>{description}</p>
+              </InfoDetailText>
+              <h2>Base Stats</h2>
+              <InfoDetailText>
+                <p>HP: {poke.stats[0].base_stat}</p>
+                {/* map */}
+                <DivProgressStats percent={`${poke.stats[0].base_stat}`}></DivProgressStats>
+                <p>ATK: {poke.stats[1].base_stat}</p>
+                <DivProgressStats percent={`${poke.stats[1].base_stat}`}></DivProgressStats>
+                <p>DEF: {poke.stats[2].base_stat}</p>
+                <DivProgressStats percent={`${poke.stats[2].base_stat}`}></DivProgressStats>
+                <p>SATK: {poke.stats[3].base_stat}</p>
+                <DivProgressStats percent={`${poke.stats[3].base_stat}`}></DivProgressStats>
+                <p>SDEF: {poke.stats[4].base_stat}</p>
+                <DivProgressStats percent={`${poke.stats[4].base_stat}`}></DivProgressStats>
+                <p>SPD: {poke.stats[5].base_stat}</p>
+                <DivProgressStats percent={`${poke.stats[5].base_stat}`}></DivProgressStats>
+              </InfoDetailText>
+            </InfoDetailContainer>
+          </ColorDetail>
         );
       })}
-    </>
+    </div>
   );
 }
 
