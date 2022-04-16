@@ -2,7 +2,6 @@ import { Route, Routes, BrowserRouter } from 'react-router-dom'
 import Detail from './pages/detail/Detail'
 import Home from './pages/home/Home'
 
-
 function Routers() {
   return (
     <BrowserRouter>

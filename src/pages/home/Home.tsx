@@ -1,25 +1,25 @@
 import { getPokemon } from "../../store/actions/PokemonActions";
 import { connect } from "react-redux";
 import { useEffect, useState } from "react";
+import { ColorPokemon, ImgHome, NamePokemon } from "../../AllPages.styles";
 import {
-  ColorPokemon,
-  ImgHome,
-  NamePokemon,
   FullPageHome,
   ContainerPokemon,
   StyledLink,
   PokemonName,
   TitleHomeDiv,
   CgPokemonStyled,
-  StyledSelect
-} from "../../AllPages.styles";
+  StyledSelect,
+  SelectDiv,
+} from "./Home.details";
 import { useNavigate } from "react-router-dom";
-import Select from "react-select";
 
+interface sortDTO {
+  id: number;
+}
 
-function Searching(reducer: any) {
+function Home(reducer: any) {
   const { pokemonsToList, dispatch, pokemonsDetails } = reducer;
-  const [search, setSearch] = useState({});
   const [searchedPokemons, setSearchedPokemons] = useState<any>([]);
   const navigate = useNavigate();
 
@@ -30,6 +30,9 @@ function Searching(reducer: any) {
   }, []);
 
   useEffect(() => {
+    pokemonsDetails.sort((a: sortDTO, b: sortDTO) => {
+      return a.id - b.id;
+    });
     mapOptions();
   }, [pokemonsDetails]);
 
@@ -41,8 +44,6 @@ function Searching(reducer: any) {
   };
 
   const mapOptions = () => {
-    let newObj: any = [];
-    console.log(pokemonsDetails, "pokeoke");
     const pokeOptions = pokemonsDetails.map((e: any) => {
       return { value: e.name, label: e.name };
     });
@@ -52,14 +53,17 @@ function Searching(reducer: any) {
   return (
     <FullPageHome>
       <TitleHomeDiv>
-      <CgPokemonStyled /><h1>Pokedex</h1>
+        <CgPokemonStyled />
+        <h1>Pokedex</h1>
       </TitleHomeDiv>
 
-      <StyledSelect
-        placeholder={'Search your pokemon'}
-        options={searchedPokemons}
-        onChange={(poke: any) => setupNavigate(poke)}
-      />
+      <SelectDiv>
+        <StyledSelect
+          placeholder={"Search your pokemon"}
+          options={searchedPokemons}
+          onChange={(poke: any) => setupNavigate(poke)}
+        />
+      </SelectDiv>
 
       <ContainerPokemon>
         {pokemonsDetails.map((e: any) => {
@@ -98,4 +102,4 @@ const mapStateToProps = (state: any) => ({
   pokemonsDetails: state.pokemonReducer.pokemonsDetails,
 });
 
-export default connect(mapStateToProps)<any>(Searching);
+export default connect(mapStateToProps)<any>(Home);
