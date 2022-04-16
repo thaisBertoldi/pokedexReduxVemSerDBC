@@ -31,11 +31,18 @@ function Detail(reducer: any) {
   const [description, setDescription] = useState<string | null>("");
 
   useEffect(() => {
+    if (pokemonsToList.length === 1) {
+      getPokemon(pokemonsToList, dispatch);
+    }
+  }, []);
+
+  useEffect(() => {
     if (pokemonsDetails.length < 1) {
       getPokemon(pokemonsToList, dispatch);
     }
     getPokemonById();
-  }, []);
+    
+  }, [pokemonsToList]);
 
   const getPokemonById = () => {
     const arrPokemonById = pokemonsDetails.filter((e: any) => {
