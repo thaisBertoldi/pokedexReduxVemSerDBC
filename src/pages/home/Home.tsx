@@ -8,11 +8,14 @@ import {
   FullPageHome,
   ContainerPokemon,
   StyledLink,
+  PokemonName,
+  TitleHomeDiv,
+  CgPokemonStyled,
+  StyledSelect
 } from "../../AllPages.styles";
 import { useNavigate } from "react-router-dom";
-import { Component, Fragment } from "react";
 import Select from "react-select";
-import { getValue } from "@testing-library/user-event/dist/utils";
+
 
 function Searching(reducer: any) {
   const { pokemonsToList, dispatch, pokemonsDetails } = reducer;
@@ -48,9 +51,12 @@ function Searching(reducer: any) {
 
   return (
     <FullPageHome>
-      <h1>Pokemons</h1>
+      <TitleHomeDiv>
+      <CgPokemonStyled /><h1>Pokedex</h1>
+      </TitleHomeDiv>
 
-      <Select
+      <StyledSelect
+        placeholder={'Search your pokemon'}
         options={searchedPokemons}
         onChange={(poke: any) => setupNavigate(poke)}
       />
@@ -76,7 +82,7 @@ function Searching(reducer: any) {
               </StyledLink>
               <StyledLink to={`/detail/${e.id}`}>
                 <NamePokemon>
-                  <p>{e.name}</p>
+                  <PokemonName>{e.name}</PokemonName>
                 </NamePokemon>
               </StyledLink>
             </ColorPokemon>
