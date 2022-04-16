@@ -1,6 +1,6 @@
 import { api } from "../../api";
 import axios from "axios";
-import { InitialDTO } from "../../models/InitialDTO";
+import { InitialDTO } from "../../models/PokemonActions";
 
 export const getPokemon = async (state: any, dispatch: any) => {
   try {

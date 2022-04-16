@@ -13,7 +13,7 @@ import {
   SelectDiv,
 } from "./Home.details";
 import { useNavigate } from "react-router-dom";
-import {PokemonsDetailsDTO} from '../../models/InitialDTO'
+import {PokemonsDetailsDTO} from '../../models/PokemonActions'
 
 interface sortDTO {
   id: number;
