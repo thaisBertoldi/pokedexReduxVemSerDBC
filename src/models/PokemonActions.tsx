@@ -15,4 +15,4 @@ export interface PokemonsDetailsDTO{
     types: [{
         type: {name: string}
     }]
-}[]
+}

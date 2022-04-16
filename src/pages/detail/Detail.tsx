@@ -14,6 +14,7 @@ import {
   ImgDetailDiv,
   ImgPokeball,
   InfoDetailContainer,
+  InfoDetailDescript,
   InfoDetailText,
   InfoESpan,
   InfoESpanSemBorda,
@@ -89,7 +90,7 @@ function Detail(reducer: any) {
                 <p>{poke.types[0].type.name}</p>
                 <h2>About</h2>
               </DivType>
-              <InfoDetailText>
+              <InfoDetailDescript>
                 <AllInfoESpan>
                   <InfoESpan>
                     <p>{poke.weight} kg</p>
