@@ -2,18 +2,24 @@ import { Link } from "react-router-dom";
 import styled, { css } from "styled-components";
 
 export const TitleDetail = styled.div`
-  display: flex;
-  flex-direction: row;
-  width: 224px;
-  height: 32px;
   align-items: center;
   justify-content: space-between;
+  display: grid;
+  grid-template-columns: 15% 30% 15%;
   color: white;
 `;
 
 export const ImgDetail = styled.img`
-  width: 300px;
+  width: 400px;
+  position: absolute;
+`;
+
+export const ImgDetailDiv = styled.div`
   display: flex;
+  height: 300px;
+  margin-top: 15px;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const ImgPokeball = styled.img`
@@ -190,6 +196,10 @@ export const DivProgressStats = styled.div<{ percent: string | number}>`
     width: 248px;
     height: 10px;
     margin-bottom: 15px;
+`;
+
+export const PokemonNameH1 = styled.h1`
+  text-transform: capitalize;
 `;
 
 export const LinkArrow = styled(Link)`
