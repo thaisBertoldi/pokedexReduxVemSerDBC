@@ -5,10 +5,10 @@ import { InitialDTO } from "../../models/PokemonActions";
 export const getPokemon = async (state: any, dispatch: any) => {
   try {
     const { data } = await api.get("/?offset=0&limit=160");
-    console.log("chamou aqui");
     const obj = {
       type: "GET_POKEMON",
       pokemonsToList: data.results,
+      loading: false,
     };
     dispatch(obj);
     getPokemons(obj, dispatch);

@@ -11,34 +11,36 @@ import {
   CgPokemonStyled,
   StyledSelect,
   SelectDiv,
+  DivImgLoading,
 } from "./Home.details";
 import { useNavigate } from "react-router-dom";
-import {PokemonsDetailsDTO} from '../../models/PokemonActions'
-
+import { PokemonsDetailsDTO } from "../../models/PokemonActions";
+import loadingImg from "../../images/loading.gif";
 interface sortDTO {
   id: number;
 }
 
-interface pokeDTO{
+interface pokeDTO {
   label: string;
-  value: string
+  value: string;
 }
 
-interface pokeSelecionadoDTO{
+interface pokeSelecionadoDTO {
   name: string;
 }
 
 function Home(reducer: any) {
-  const { pokemonsToList, dispatch, pokemonsDetails } = reducer;
+  const { pokemonsToList, dispatch, pokemonsDetails, loading } = reducer;
   const [searchedPokemons, setSearchedPokemons] = useState([]);
   const navigate = useNavigate();
+
+  console.log(pokemonsToList.loading);
 
   useEffect(() => {
     if (pokemonsToList.length === 1) {
       getPokemon(pokemonsToList, dispatch);
     }
   }, []);
-  console.log(searchedPokemons)
 
   useEffect(() => {
     pokemonsDetails.sort((a: sortDTO, b: sortDTO) => {
@@ -48,13 +50,12 @@ function Home(reducer: any) {
   }, [pokemonsDetails]);
 
   const setupNavigate = (poke: pokeDTO) => {
-    console.log(poke, "poke")
+    console.log(poke, "poke");
     const pokeSelecionado = pokemonsDetails.filter(
       (e: pokeSelecionadoDTO) => e.name === poke.value
     );
     navigate(`/detail/${pokeSelecionado[0].id}`);
   };
-  console.log(pokemonsDetails, "details")
 
   const mapOptions = () => {
     const pokeOptions = pokemonsDetails.map((e: PokemonsDetailsDTO) => {
@@ -79,6 +80,11 @@ function Home(reducer: any) {
       </SelectDiv>
 
       <ContainerPokemon>
+        {loading && 
+        <DivImgLoading>
+          <img src={loadingImg} alt="charmander hunt" />
+        </DivImgLoading>
+        }
         {pokemonsDetails.map((e: PokemonsDetailsDTO) => {
           return (
             <ColorPokemon key={e.id} type={e.types[0].type.name}>
@@ -110,9 +116,10 @@ function Home(reducer: any) {
   );
 }
 
-const mapStateToProps = ( state: RootStateOrAny) => ({
+const mapStateToProps = (state: RootStateOrAny) => ({
   pokemonsToList: state.pokemonReducer.pokemonsToList,
   pokemonsDetails: state.pokemonReducer.pokemonsDetails,
+  loading: state.pokemonReducer.loading,
 });
 
 export default connect(mapStateToProps)(Home);

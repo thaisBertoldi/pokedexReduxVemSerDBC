@@ -106,13 +106,13 @@ function Detail(reducer: any) {
                 <AllInfoESpan>
                   <InfoESpan>
                     <FaWeight />
-                    <p>{poke.weight} kg</p>
+                    <p>{(poke.weight*100)/1000} kg</p>
                     <Spans margin="0">Weight</Spans>
                   </InfoESpan>
 
                   <InfoESpan>
                     <FaRulerVertical />
-                    <p>{poke.height} kg</p>
+                    <p>{(poke.height*10)/100} m</p>
                     <Spans margin="0">Height</Spans>
                   </InfoESpan>
 

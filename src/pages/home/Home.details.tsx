@@ -45,3 +45,9 @@ export const SelectDiv = styled.div`
   display: flex;
   
 `
+
+export const DivImgLoading = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
