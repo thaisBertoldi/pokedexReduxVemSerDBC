@@ -1,5 +1,5 @@
 import { getPokemon } from "../../store/actions/PokemonActions";
-import { connect } from "react-redux";
+import { connect, RootStateOrAny } from "react-redux";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
@@ -154,9 +154,9 @@ function Detail(reducer: any) {
   );
 }
 
-const mapStateToProps = (state: any) => ({
+const mapStateToProps = (state: RootStateOrAny) => ({
   pokemonsToList: state.pokemonReducer.pokemonsToList,
   pokemonsDetails: state.pokemonReducer.pokemonsDetails,
 });
 
-export default connect(mapStateToProps)<any>(Detail);
+export default connect(mapStateToProps)(Detail);

@@ -1,5 +1,5 @@
 import { getPokemon } from "../../store/actions/PokemonActions";
-import { connect } from "react-redux";
+import { connect, RootStateOrAny } from "react-redux";
 import { useEffect, useState } from "react";
 import { ColorPokemon, ImgHome, NamePokemon } from "../../AllPages.styles";
 import {
@@ -110,7 +110,7 @@ function Home(reducer: any) {
   );
 }
 
-const mapStateToProps = (state: any) => ({
+const mapStateToProps = ( state: RootStateOrAny) => ({
   pokemonsToList: state.pokemonReducer.pokemonsToList,
   pokemonsDetails: state.pokemonReducer.pokemonsDetails,
 });
