@@ -26,12 +26,19 @@ import {
   TitleDetail,
 } from "./Detail.styles";
 import { DetailDTO } from "../../models/PokemonActions";
+import { FaWeight, FaRulerVertical  } from "react-icons/fa";
+
+interface ColorDTO {
+  name: string,
+  url: string,
+}
 
 function Detail(reducer: any) {
   const { pokemonsToList, dispatch, pokemonsDetails } = reducer;
   const { id } = useParams();
   const [pokemonById, setPokemonById] = useState([]);
   const [description, setDescription] = useState<string | null>("");
+  const [color, setColor] = useState<ColorDTO>({name: '', url: ''})
 
   useEffect(() => {
     if (pokemonsDetails.length < 1) {
@@ -43,7 +50,7 @@ function Detail(reducer: any) {
   const getPokemonById = () => {
     const arrPokemonById = pokemonsDetails.filter((e: any) => {
       if (e.id === Number(id)) {
-        getDescriptionPokemon(e.id);
+         getDescriptionPokemon(e.id);
         return e;
       }
       return null;
@@ -56,13 +63,14 @@ function Detail(reducer: any) {
       const { data } = await axios.get(
         `https://pokeapi.co/api/v2/pokemon-species/${id}`
       );
+      setColor(data.color)
       setDescription(data.flavor_text_entries[10].flavor_text);
     } catch (error) {
       console.log(error);
     }
   };
 
-  console.log(pokemonById)
+  console.log(color)
 
   return (
     <>
@@ -97,11 +105,13 @@ function Detail(reducer: any) {
               <InfoDetailDescript>
                 <AllInfoESpan>
                   <InfoESpan>
+                    <FaWeight />
                     <p>{poke.weight} kg</p>
                     <Spans margin="0">Weight</Spans>
                   </InfoESpan>
 
                   <InfoESpan>
+                    <FaRulerVertical />
                     <p>{poke.height} kg</p>
                     <Spans margin="0">Height</Spans>
                   </InfoESpan>
@@ -110,7 +120,7 @@ function Detail(reducer: any) {
                     {poke.abilities.map((ability: any) => {
                       return <PMoves>{ability.ability.name}</PMoves>;
                     })}
-                    <Spans margin="5px">Moves</Spans>
+                    <Spans margin="23px">Moves</Spans>
                   </InfoESpanSemBorda>
                 </AllInfoESpan>
                 <div>
@@ -138,7 +148,7 @@ function Detail(reducer: any) {
                   {poke.stats.map((e: any, index: number) => {
                     return (
                       <DivProgressStats key={index}
-                        percent={`${e.base_stat}`}
+                        percent={`${e.base_stat}`} color={color.name}
                       ></DivProgressStats>
                     );
                   })}

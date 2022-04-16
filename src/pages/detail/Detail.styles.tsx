@@ -5,7 +5,7 @@ export const TitleDetail = styled.div`
   align-items: center;
   justify-content: space-between;
   display: grid;
-  grid-template-columns: 15% 30% 15%;
+  grid-template-columns: 15% 70% 15%;
   color: white;
 `;
 
@@ -202,8 +202,8 @@ export const InfoESpanSemBorda = styled.div`
     height: 50%;
 `;
 
-export const DivProgressStats = styled.div<{ percent: string | number}>`
-    background-image: linear-gradient(to right, #74CB48 ${props => Number(props.percent)}%, #c4e7b3a4 10%);
+export const DivProgressStats = styled.div<{ percent: string | number, color: string}>`
+    background-image: linear-gradient(to right, ${props => props.color} ${props => Number(props.percent)}%, #c4e7b3a4 10%);
     width: 248px;
     height: 10px;
     margin-bottom: 15px;
