@@ -13,14 +13,24 @@ import {
   SelectDiv,
 } from "./Home.details";
 import { useNavigate } from "react-router-dom";
+import {PokemonsDetailsDTO} from '../../models/InitialDTO'
 
 interface sortDTO {
   id: number;
 }
 
+interface pokeDTO{
+  label: string;
+  value: string
+}
+
+interface pokeSelecionadoDTO{
+  name: string;
+}
+
 function Home(reducer: any) {
   const { pokemonsToList, dispatch, pokemonsDetails } = reducer;
-  const [searchedPokemons, setSearchedPokemons] = useState<any>([]);
+  const [searchedPokemons, setSearchedPokemons] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -28,6 +38,7 @@ function Home(reducer: any) {
       getPokemon(pokemonsToList, dispatch);
     }
   }, []);
+  console.log(searchedPokemons)
 
   useEffect(() => {
     pokemonsDetails.sort((a: sortDTO, b: sortDTO) => {
@@ -36,15 +47,17 @@ function Home(reducer: any) {
     mapOptions();
   }, [pokemonsDetails]);
 
-  const setupNavigate = (poke: any) => {
+  const setupNavigate = (poke: pokeDTO) => {
+    console.log(poke, "poke")
     const pokeSelecionado = pokemonsDetails.filter(
-      (e: any) => e.name === poke.value
+      (e: pokeSelecionadoDTO) => e.name === poke.value
     );
     navigate(`/detail/${pokeSelecionado[0].id}`);
   };
+  console.log(pokemonsDetails, "details")
 
   const mapOptions = () => {
-    const pokeOptions = pokemonsDetails.map((e: any) => {
+    const pokeOptions = pokemonsDetails.map((e: PokemonsDetailsDTO) => {
       return { value: e.name, label: e.name };
     });
     setSearchedPokemons(pokeOptions);
@@ -66,7 +79,7 @@ function Home(reducer: any) {
       </SelectDiv>
 
       <ContainerPokemon>
-        {pokemonsDetails.map((e: any) => {
+        {pokemonsDetails.map((e: PokemonsDetailsDTO) => {
           return (
             <ColorPokemon key={e.id} type={e.types[0].type.name}>
               <div>
@@ -102,4 +115,4 @@ const mapStateToProps = (state: any) => ({
   pokemonsDetails: state.pokemonReducer.pokemonsDetails,
 });
 
-export default connect(mapStateToProps)<any>(Home);
+export default connect(mapStateToProps)(Home);
