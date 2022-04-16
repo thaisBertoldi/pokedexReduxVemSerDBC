@@ -1,9 +1,8 @@
 import { getPokemon } from "../../store/actions/PokemonActions";
 import { connect } from "react-redux";
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
-import { ImgHome } from "../../AllPages.styles";
 import imgPokeball from "../../images/Pokeball.png";
 import axios from "axios";
 import {
@@ -12,12 +11,14 @@ import {
   DivProgressStats,
   DivType,
   ImgDetail,
+  ImgDetailDiv,
   ImgPokeball,
   InfoDetailContainer,
   InfoDetailText,
   InfoESpan,
   InfoESpanSemBorda,
   LinkArrow,
+  PokemonNameH1,
   TitleDetail,
 } from "./Detail.styles";
 
@@ -26,7 +27,6 @@ function Detail(reducer: any) {
   const { id } = useParams();
   const [pokemonById, setPokemonById] = useState([]);
   const [description, setDescription] = useState<string | null>("");
-
 
   useEffect(() => {
     if (pokemonsDetails.length < 1) {
@@ -67,7 +67,7 @@ function Detail(reducer: any) {
               <LinkArrow to="/">
                 <FaArrowLeft />
               </LinkArrow>
-              <h1>{poke.name}</h1>
+              <PokemonNameH1>{poke.name}</PokemonNameH1>
               <p>
                 {poke.id < 10
                   ? `#00${poke.id}`
@@ -78,10 +78,12 @@ function Detail(reducer: any) {
             </TitleDetail>
             <div>
               <ImgPokeball src={imgPokeball} />
-              <ImgDetail
-                src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${poke.id}.png`}
-                alt="Imagem do pokemon"
-              />
+              <ImgDetailDiv>
+                <ImgDetail
+                  src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${poke.id}.png`}
+                  alt="Imagem do pokemon"
+                />
+              </ImgDetailDiv>
             </div>
             <InfoDetailContainer>
               <DivType type={poke.types[0].type.name}>
@@ -108,8 +110,10 @@ function Detail(reducer: any) {
                   </InfoESpanSemBorda>
                 </AllInfoESpan>
                 <p>{description}</p>
-              </InfoDetailText>
-              <h2>Base Stats</h2>
+              </InfoDetailDescript>
+              <DivType type={poke.types[0].type.name}>
+                <h2>Base Stats</h2>
+              </DivType>
               <InfoDetailText>
                 {poke.stats.map((stat: any) => {
                   return (
