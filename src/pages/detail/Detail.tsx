@@ -20,7 +20,9 @@ import {
   InfoESpan,
   InfoESpanSemBorda,
   LinkArrow,
+  PMoves,
   PokemonNameH1,
+  Spans,
   TitleDetail,
 } from "./Detail.styles";
 
@@ -35,7 +37,6 @@ function Detail(reducer: any) {
       getPokemon(pokemonsToList, dispatch);
     }
     getPokemonById();
-    
   }, [pokemonsToList]);
 
   const getPokemonById = () => {
@@ -61,7 +62,7 @@ function Detail(reducer: any) {
   };
 
   return (
-    <div>
+    <>
       {pokemonById.map((poke: any) => {
         return (
           <ColorDetail type={poke.types[0].type.name} key={poke.id}>
@@ -78,15 +79,13 @@ function Detail(reducer: any) {
                   : `#${poke.id}`}
               </p>
             </TitleDetail>
-            <div>
-              <ImgPokeball src={imgPokeball} />
-              <ImgDetailDiv>
-                <ImgDetail
-                  src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${poke.id}.png`}
-                  alt="Imagem do pokemon"
-                />
-              </ImgDetailDiv>
-            </div>
+            <ImgPokeball src={imgPokeball} />
+            <ImgDetailDiv>
+              <ImgDetail
+                src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${poke.id}.png`}
+                alt="Imagem do pokemon"
+              />
+            </ImgDetailDiv>
             <InfoDetailContainer>
               <DivType type={poke.types[0].type.name}>
                 <p>{poke.types[0].type.name}</p>
@@ -96,22 +95,24 @@ function Detail(reducer: any) {
                 <AllInfoESpan>
                   <InfoESpan>
                     <p>{poke.weight} kg</p>
-                    <span>Weight</span>
+                    <Spans margin="0">Weight</Spans>
                   </InfoESpan>
 
                   <InfoESpan>
                     <p>{poke.height} kg</p>
-                    <span>Height</span>
+                    <Spans margin="0">Height</Spans>
                   </InfoESpan>
 
                   <InfoESpanSemBorda>
                     {poke.abilities.map((ability: any) => {
-                      return <p>{ability.ability.name}</p>;
+                      return <PMoves>{ability.ability.name}</PMoves>;
                     })}
-                    <span>Moves</span>
+                    <Spans margin="5px">Moves</Spans>
                   </InfoESpanSemBorda>
                 </AllInfoESpan>
-                <p>{description}</p>
+                <div>
+                  <p>{description}</p>
+                </div>
               </InfoDetailDescript>
               <DivType type={poke.types[0].type.name}>
                 <h2>Base Stats</h2>
@@ -144,7 +145,7 @@ function Detail(reducer: any) {
           </ColorDetail>
         );
       })}
-    </div>
+    </>
   );
 }
 

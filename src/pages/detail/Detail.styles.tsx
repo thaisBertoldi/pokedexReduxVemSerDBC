@@ -24,13 +24,13 @@ export const ImgDetailDiv = styled.div`
 
 export const ImgPokeball = styled.img`
   position: absolute;
-  margin-left: 200px;
+  margin-left: 400px;
   width: 300px;
 `;
 
-
 export const ColorDetail = styled.div<{ type: any }>`
-  width: 550px;
+  width: 750px;
+  padding: 15px;
   ${(props: any) => {
     switch (props.type) {
       case "grass":
@@ -139,16 +139,15 @@ export const DivType = styled(ColorDetail)`
   justify-content: center;
   flex-direction: column;
   background-color: white;
-  width: 500px;
-  height: 700px;
+  width: 95%;
 `;
 
 export const InfoDetailContainer = styled.div`
   background-color: white;
-  width: 500px;
-  height: 700px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  padding-left: 25px;
 `;
 
 export const InfoDetailDescript = styled.div`
@@ -159,6 +158,7 @@ export const InfoDetailText = styled.div`
     color: black;
     display: flex;
     gap: 10px;
+    justify-content: center;
 `;
 
 export const InfoBarraHorizontal = styled.div`
@@ -171,7 +171,7 @@ export const InfoBarraHorizontal = styled.div`
 export const AllInfoESpan = styled.div`
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
 `;
 
 export const InfoESpan = styled.div`
@@ -180,7 +180,17 @@ export const InfoESpan = styled.div`
     align-items: center;
     justify-content: center;
     border-right: 1px solid #E0E0E0;
-    width: 30%;
+    width: 35%;
+    height: 50%;
+`;
+
+export const PMoves = styled.p`
+  margin: 0;
+`;
+
+export const Spans = styled.span<{ margin: string}>`
+  margin-top: ${props => props.margin};
+  opacity: 0.5;
 `;
 
 export const InfoESpanSemBorda = styled.div`
@@ -188,7 +198,8 @@ export const InfoESpanSemBorda = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 25%;
+    width: 35%;
+    height: 50%;
 `;
 
 export const DivProgressStats = styled.div<{ percent: string | number}>`
