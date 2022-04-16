@@ -145,8 +145,21 @@ export const InfoDetailContainer = styled.div`
   flex-direction: column;
 `;
 
+export const InfoDetailDescript = styled.div`
+    color: black;
+`;
+
 export const InfoDetailText = styled.div`
     color: black;
+    display: flex;
+    gap: 10px;
+`;
+
+export const InfoBarraHorizontal = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-top: 20px;
 `;
 
 export const AllInfoESpan = styled.div`
