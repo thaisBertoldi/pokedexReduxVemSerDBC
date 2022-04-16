@@ -64,7 +64,7 @@ function Detail(reducer: any) {
         `https://pokeapi.co/api/v2/pokemon-species/${id}`
       );
       setColor(data.color)
-      setDescription(data.flavor_text_entries[10].flavor_text);
+      setDescription(data.flavor_text_entries[Math.floor(Math.random() * 10)].flavor_text);
     } catch (error) {
       console.log(error);
     }
