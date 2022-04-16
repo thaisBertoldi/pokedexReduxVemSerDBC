@@ -25,6 +25,7 @@ import {
   Spans,
   TitleDetail,
 } from "./Detail.styles";
+import { DetailDTO } from "../../models/PokemonActions";
 
 function Detail(reducer: any) {
   const { pokemonsToList, dispatch, pokemonsDetails } = reducer;
@@ -61,9 +62,11 @@ function Detail(reducer: any) {
     }
   };
 
+  console.log(pokemonById)
+
   return (
     <>
-      {pokemonById.map((poke: any) => {
+      {pokemonById.map((poke: DetailDTO) => {
         return (
           <ColorDetail type={poke.types[0].type.name} key={poke.id}>
             <TitleDetail>
@@ -127,14 +130,14 @@ function Detail(reducer: any) {
                   <p>SPD</p>
                 </div>
                 <div>
-                  {poke.stats.map((e: any) => {
-                    return <p>{e.base_stat}</p>;
+                  {poke.stats.map((e: any, index: number) => {
+                    return <p key={index}>{e.base_stat}</p>;
                   })}
                 </div>
                 <InfoBarraHorizontal>
-                  {poke.stats.map((e: any) => {
+                  {poke.stats.map((e: any, index: number) => {
                     return (
-                      <DivProgressStats
+                      <DivProgressStats key={index}
                         percent={`${e.base_stat}`}
                       ></DivProgressStats>
                     );
