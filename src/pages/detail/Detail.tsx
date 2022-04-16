@@ -13,7 +13,9 @@ import {
   DivType,
   ImgDetail,
   ImgPokeball,
+  InfoBarraHorizontal,
   InfoDetailContainer,
+  InfoDetailDescript,
   InfoDetailText,
   InfoESpan,
   InfoESpanSemBorda,
@@ -63,6 +65,8 @@ function Detail(reducer: any) {
     }
   };
 
+  console.log(pokemonById);
+
   return (
     <div>
       {pokemonById.map((poke: any) => {
@@ -93,7 +97,7 @@ function Detail(reducer: any) {
                 <p>{poke.types[0].type.name}</p>
                 <h2>About</h2>
               </DivType>
-              <InfoDetailText>
+              <InfoDetailDescript>
                 <AllInfoESpan>
                   <InfoESpan>
                     <p>{poke.weight} kg</p>
@@ -113,39 +117,31 @@ function Detail(reducer: any) {
                   </InfoESpanSemBorda>
                 </AllInfoESpan>
                 <p>{description}</p>
-              </InfoDetailText>
+              </InfoDetailDescript>
               <h2>Base Stats</h2>
               <InfoDetailText>
-                {poke.stats.map((stat: any) => {
-                  return (
-                    <div>
-                      <p>HP: {poke.stats[0].base_stat}</p>
+                <div>
+                  <p>HP</p>
+                  <p>ATK</p>
+                  <p>DEF</p>
+                  <p>SATK</p>
+                  <p>SDEF</p>
+                  <p>SPD</p>
+                </div>
+                <div>
+                  {poke.stats.map((e: any) => {
+                    return <p>{e.base_stat}</p>;
+                  })}
+                </div>
+                <InfoBarraHorizontal>
+                  {poke.stats.map((e: any) => {
+                    return (
                       <DivProgressStats
-                        percent={`${poke.stats[0].base_stat}`}
+                        percent={`${e.base_stat}`}
                       ></DivProgressStats>
-                      <p>ATK: {poke.stats[1].base_stat}</p>
-                      <DivProgressStats
-                        percent={`${poke.stats[1].base_stat}`}
-                      ></DivProgressStats>
-                      <p>DEF: {poke.stats[2].base_stat}</p>
-                      <DivProgressStats
-                        percent={`${poke.stats[2].base_stat}`}
-                      ></DivProgressStats>
-                      <p>SATK: {poke.stats[3].base_stat}</p>
-                      <DivProgressStats
-                        percent={`${poke.stats[3].base_stat}`}
-                      ></DivProgressStats>
-                      <p>SDEF: {poke.stats[4].base_stat}</p>
-                      <DivProgressStats
-                        percent={`${poke.stats[4].base_stat}`}
-                      ></DivProgressStats>
-                      <p>SPD: {poke.stats[5].base_stat}</p>
-                      <DivProgressStats
-                        percent={`${poke.stats[5].base_stat}`}
-                      ></DivProgressStats>
-                    </div>
-                  );
-                })}
+                    );
+                  })}
+                </InfoBarraHorizontal>
               </InfoDetailText>
             </InfoDetailContainer>
           </ColorDetail>
