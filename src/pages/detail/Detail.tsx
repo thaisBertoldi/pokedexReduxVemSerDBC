@@ -31,12 +31,6 @@ function Detail(reducer: any) {
   const [description, setDescription] = useState<string | null>("");
 
   useEffect(() => {
-    if (pokemonsToList.length === 1) {
-      getPokemon(pokemonsToList, dispatch);
-    }
-  }, []);
-
-  useEffect(() => {
     if (pokemonsDetails.length < 1) {
       getPokemon(pokemonsToList, dispatch);
     }
@@ -65,8 +59,6 @@ function Detail(reducer: any) {
       console.log(error);
     }
   };
-
-  console.log(pokemonById);
 
   return (
     <div>
