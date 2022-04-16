@@ -1,4 +1,4 @@
-import { InitialDTO } from "../../models/InitialDTO"
+import { InitialDTO } from "../../models/PokemonActions"
 
 const INITIAL_STATE:InitialDTO ={
     activePokemon:{},

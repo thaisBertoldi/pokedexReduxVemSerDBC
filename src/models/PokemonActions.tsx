@@ -8,3 +8,11 @@ export interface InitialDTO{
        
     ]
 }
+
+export interface PokemonsDetailsDTO{
+    id: number;
+    name: string;
+    types: [{
+        type: {name: string}
+    }]
+}[]
