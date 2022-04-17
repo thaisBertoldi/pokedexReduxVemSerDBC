@@ -11,9 +11,9 @@ export const ColorPokemon = styled.div<{ type: any }>`
   margin: 20px;
   justify-content: space-between;
   align-items: center;
-  /* -moz-transition: all 0.3s;
+  -moz-transition: all 0.3s;
     -webkit-transition: all 0.3s;
-    transition: all 0.3s */
+    transition: all 0.3s;
 
   ${(props: any) => {
     switch (props.type) {
