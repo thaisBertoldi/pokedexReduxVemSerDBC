@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
-import { CgPokemon } from 'react-icons/cg';
+import { CgPokemon } from "react-icons/cg";
 import Select from "react-select";
 
 export const ColorPokemon = styled.div<{ type: any }>`
@@ -11,6 +11,9 @@ export const ColorPokemon = styled.div<{ type: any }>`
   margin: 20px;
   justify-content: space-between;
   align-items: center;
+  /* -moz-transition: all 0.3s;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s */
 
   ${(props: any) => {
     switch (props.type) {
@@ -294,12 +297,12 @@ export const ColorPokemon = styled.div<{ type: any }>`
           > * {
             &:first-child {
               color: black;
-              > *{
+              > * {
                 display: flex;
                 justify-content: flex-end;
                 width: 280px;
                 padding-right: 20px;
-                }
+              }
             }
             &:last-child {
               background-color: white;
@@ -308,6 +311,11 @@ export const ColorPokemon = styled.div<{ type: any }>`
         `;
     }
   }}
+  &:hover {
+    -moz-transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+  }
 `;
 
 export const ImgHome = styled.img`
@@ -322,5 +330,3 @@ export const NamePokemon = styled.div`
   align-items: center;
   width: 300px;
 `;
-
-

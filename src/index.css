@@ -8,6 +8,8 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  background: url(../src/images/background.png), url(../src/images/loadingImg.gif) no-repeat, url(../src/images/haha.gif) top right no-repeat, url(../src/images/pikachu.gif) bottom left no-repeat, url(../src/images/das.gif) bottom right no-repeat;
+  background-size: 200px;
 }
 
 code {

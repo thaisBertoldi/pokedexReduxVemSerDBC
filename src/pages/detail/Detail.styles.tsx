@@ -12,6 +12,11 @@ export const TitleDetail = styled.div`
 export const ImgDetail = styled.img`
   width: 400px;
   position: absolute;
+  &:hover{
+    -moz-transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+  }
 `;
 
 export const ImgDetailDiv = styled.div`
