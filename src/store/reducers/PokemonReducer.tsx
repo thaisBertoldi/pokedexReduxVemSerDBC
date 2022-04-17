@@ -7,6 +7,7 @@ const INITIAL_STATE:InitialDTO ={
         url: ""
     }],
     loading: true,
+    error: false,
     pokemonsDetails:[],
 }
 
@@ -15,7 +16,8 @@ const pokemonReducer = (state = INITIAL_STATE, action:any) =>{
         return{
             ...state,
             pokemonsToList: action.pokemonsToList, 
-            loading: action.loading
+            loading: action.loading,
+            error: action.error
         }
     }
     if(action.type === 'GET_DETAILS_POKEMONS'){

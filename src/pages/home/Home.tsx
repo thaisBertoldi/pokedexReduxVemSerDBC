@@ -16,6 +16,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { PokemonsDetailsDTO } from "../../models/PokemonActions";
 import loadingImg from "../../images/loading.gif";
+import Error from "../../components/error/Error";
 interface sortDTO {
   id: number;
 }
@@ -30,12 +31,10 @@ interface pokeSelecionadoDTO {
 }
 
 function Home(reducer: any) {
-  const { pokemonsToList, dispatch, pokemonsDetails, loading } = reducer;
+  const { pokemonsToList, dispatch, pokemonsDetails, loading, error } = reducer;
   const [searchedPokemons, setSearchedPokemons] = useState([]);
   const navigate = useNavigate();
-
-  console.log(pokemonsToList.loading);
-
+ 
   useEffect(() => {
     if (pokemonsToList.length === 1) {
       getPokemon(pokemonsToList, dispatch);
@@ -79,39 +78,44 @@ function Home(reducer: any) {
         />
       </SelectDiv>
 
-      <ContainerPokemon>
-        {loading && 
+      {loading && (
         <DivImgLoading>
           <img src={loadingImg} alt="charmander hunt" />
         </DivImgLoading>
-        }
-        {pokemonsDetails.map((e: PokemonsDetailsDTO) => {
-          return (
-            <ColorPokemon key={e.id} type={e.types[0].type.name}>
-              <div>
-                <p>
-                  {e.id < 10
-                    ? `#00${e.id}`
-                    : e.id < 100
-                    ? `#0${e.id}`
-                    : `#${e.id}`}
-                </p>
-              </div>
-              <StyledLink to={`/detail/${e.id}`}>
-                <ImgHome
-                  src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${e.id}.png`}
-                  alt="Imagem do pokemon"
-                />
-              </StyledLink>
-              <StyledLink to={`/detail/${e.id}`}>
-                <NamePokemon>
-                  <PokemonName>{e.name}</PokemonName>
-                </NamePokemon>
-              </StyledLink>
-            </ColorPokemon>
-          );
-        })}
-      </ContainerPokemon>
+      )}
+      {error && (
+        <Error />
+      )}
+      {!loading && (
+        <ContainerPokemon>
+          {pokemonsDetails.map((e: PokemonsDetailsDTO) => {
+            return (
+              <ColorPokemon key={e.id} type={e.types[0].type.name}>
+                <div>
+                  <p>
+                    {e.id < 10
+                      ? `#00${e.id}`
+                      : e.id < 100
+                      ? `#0${e.id}`
+                      : `#${e.id}`}
+                  </p>
+                </div>
+                <StyledLink to={`/detail/${e.id}`}>
+                  <ImgHome
+                    src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${e.id}.png`}
+                    alt="Imagem do pokemon"
+                  />
+                </StyledLink>
+                <StyledLink to={`/detail/${e.id}`}>
+                  <NamePokemon>
+                    <PokemonName>{e.name}</PokemonName>
+                  </NamePokemon>
+                </StyledLink>
+              </ColorPokemon>
+            );
+          })}
+        </ContainerPokemon>
+      )}
     </FullPageHome>
   );
 }
@@ -120,6 +124,7 @@ const mapStateToProps = (state: RootStateOrAny) => ({
   pokemonsToList: state.pokemonReducer.pokemonsToList,
   pokemonsDetails: state.pokemonReducer.pokemonsDetails,
   loading: state.pokemonReducer.loading,
+  error: state.pokemonReducer.error,
 });
 
 export default connect(mapStateToProps)(Home);

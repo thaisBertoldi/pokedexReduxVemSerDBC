@@ -27,6 +27,8 @@ import {
 } from "./Detail.styles";
 import { DetailDTO } from "../../models/PokemonActions";
 import { FaWeight, FaRulerVertical  } from "react-icons/fa";
+import loadingImg from "../../images/loading.gif";
+import Error from "../../components/error/Error";
 
 interface ColorDTO {
   name: string,
@@ -34,7 +36,7 @@ interface ColorDTO {
 }
 
 function Detail(reducer: any) {
-  const { pokemonsToList, dispatch, pokemonsDetails } = reducer;
+  const { pokemonsToList, dispatch, pokemonsDetails, loading, error } = reducer;
   const { id } = useParams();
   const [pokemonById, setPokemonById] = useState([]);
   const [description, setDescription] = useState<string | null>("");
@@ -70,7 +72,17 @@ function Detail(reducer: any) {
     }
   };
 
-  console.log(color)
+  if(loading){
+    return (
+      <img src={loadingImg} alt="charmander hunt" />
+    )
+  }
+
+  if(error) {
+    return (
+      <Error />
+    )
+  }
 
   return (
     <>
@@ -165,6 +177,8 @@ function Detail(reducer: any) {
 const mapStateToProps = (state: RootStateOrAny) => ({
   pokemonsToList: state.pokemonReducer.pokemonsToList,
   pokemonsDetails: state.pokemonReducer.pokemonsDetails,
+  loading: state.pokemonReducer.loading,
+  error: state.pokemonReducer.error,
 });
 
 export default connect(mapStateToProps)(Detail);

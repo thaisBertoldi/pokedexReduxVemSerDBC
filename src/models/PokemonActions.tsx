@@ -7,7 +7,8 @@ export interface InitialDTO{
     pokemonsDetails:[
        
     ],
-    loading: boolean
+    loading: boolean,
+    error: boolean
 }
 
 export interface PokemonsDetailsDTO{
