@@ -12,10 +12,17 @@ export const TitleDetail = styled.div`
 export const ImgDetail = styled.img`
   width: 400px;
   position: absolute;
-  &:hover{
-    -moz-transform: scale(1.1);
-    -webkit-transform: scale(1.1);
-    transform: scale(1.1);
+  &:hover {
+    animation: spin 3s linear;
+
+    @keyframes spin {
+      0% {
+        transform: scale(0);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
   }
 `;
 
@@ -77,7 +84,7 @@ export const ColorDetail = styled.div<{ type: any }>`
                 break-inside;
             `;
       case "electric":
-          return css`
+        return css`
                 background-color: #F7D02C;
                 color: #F7D02C;
                 break-inside;
@@ -156,14 +163,14 @@ export const InfoDetailContainer = styled.div`
 `;
 
 export const InfoDetailDescript = styled.div`
-    color: black;
+  color: black;
 `;
 
 export const InfoDetailText = styled.div`
-    color: black;
-    display: flex;
-    gap: 10px;
-    justify-content: center;
+  color: black;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
 `;
 
 export const InfoBarraHorizontal = styled.div`
@@ -174,44 +181,51 @@ export const InfoBarraHorizontal = styled.div`
 `;
 
 export const AllInfoESpan = styled.div`
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 `;
 
 export const InfoESpan = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    border-right: 1px solid #E0E0E0;
-    width: 35%;
-    height: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid #e0e0e0;
+  width: 35%;
+  height: 50%;
 `;
 
 export const PMoves = styled.p`
   margin: 0;
 `;
 
-export const Spans = styled.span<{ margin: string}>`
-  margin-top: ${props => props.margin};
+export const Spans = styled.span<{ margin: string }>`
+  margin-top: ${(props) => props.margin};
   opacity: 0.5;
 `;
 
 export const InfoESpanSemBorda = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 35%;
-    height: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 35%;
+  height: 50%;
 `;
 
-export const DivProgressStats = styled.div<{ percent: string | number, color: string}>`
-    background-image: linear-gradient(to right, ${props => props.color} ${props => Number(props.percent)}%, #c4e7b3a4 10%);
-    width: 248px;
-    height: 10px;
-    margin-bottom: 15px;
+export const DivProgressStats = styled.div<{
+  percent: string | number;
+  color: string;
+}>`
+  background-image: linear-gradient(
+    to right,
+    ${(props) => props.color} ${(props) => Number(props.percent)}%,
+    #c4e7b3a4 10%
+  );
+  width: 248px;
+  height: 10px;
+  margin-bottom: 15px;
 `;
 
 export const PokemonNameH1 = styled.h1`
