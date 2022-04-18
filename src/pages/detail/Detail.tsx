@@ -26,15 +26,10 @@ import {
   TitleDetail,
   PokeTipo
 } from "./Detail.styles";
-import { PokemonsDetailsDTO } from "../../models/PokemonActions";
+import { PokemonsDetailsDTO, ColorDTO } from "../../models/PokemonActions";
 import { FaWeight, FaRulerVertical  } from "react-icons/fa";
 import loadingImg from "../../images/loading.gif";
 import Error from "../../components/error/Error";
-
-interface ColorDTO {
-  name: string,
-  url: string,
-}
 
 function Detail(reducer: any) {
   const { pokemonsToList, dispatch, pokemonsDetails, loading, error } = reducer;
