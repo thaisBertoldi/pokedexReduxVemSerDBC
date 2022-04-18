@@ -14,14 +14,6 @@ export interface InitialDTO{
 export interface PokemonsDetailsDTO{
     id: number;
     name: string;
-    types: [{
-        type: {name: string}
-    }]
-}
-
-export interface DetailDTO{
-    id: number;
-    name: string;
     abilities: [{}];
     height: number;
     stats: [{}];
@@ -31,4 +23,10 @@ export interface DetailDTO{
             name: string
         }
     }];
+}
+
+export interface DetailDTO{
+    id: number;
+    name: string;
+    
 }

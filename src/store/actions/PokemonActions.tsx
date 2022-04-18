@@ -1,7 +1,5 @@
 import { api } from "../../api";
 import axios from "axios";
-import { InitialDTO } from "../../models/PokemonActions";
-import { isKeyObject } from "util/types";
 
 export const getPokemon = async (state: any, dispatch: any) => {
   try {
@@ -45,16 +43,3 @@ export const getPokemons = async (state: any, dispatch: any) => {
     }
   });
 };
-
-// // detail get
-
-// export const getDetailPokemon = async (state: any, dispatch: any) => {
-//   try {
-//     const { data } = await axios.get(`/${e.url}`);
-//     const obj = {
-//       type: "GET_DETAILS_POKEMONS",
-//       pokemonsDetails: data,
-//     };
-//     dispatch(obj);
-//   } catch {}
-// };

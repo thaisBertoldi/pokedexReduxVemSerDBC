@@ -5,11 +5,11 @@ import Select from "react-select";
 
 export const FullPageHome = styled.div`
   width:1000px;
-  margin: 30px;
   background-color: rgba(247, 247, 247, 1);
   border: 4px solid white;
   padding: 20px;
-  border-radius: 12px;`;
+  border-radius: 12px;
+  `;
 
 export const ContainerPokemon = styled.div`
   width: 1000px;

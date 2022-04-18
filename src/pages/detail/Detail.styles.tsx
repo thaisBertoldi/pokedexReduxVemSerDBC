@@ -43,6 +43,8 @@ export const ImgPokeball = styled.img`
 export const ColorDetail = styled.div<{ type: any }>`
   width: 750px;
   padding: 15px;
+  border-radius: 12px;
+  border: 4px solid white;
   ${(props: any) => {
     switch (props.type) {
       case "grass":
@@ -213,6 +215,18 @@ export const InfoESpanSemBorda = styled.div`
   width: 35%;
   height: 50%;
 `;
+export const PokeTipo = styled(ColorDetail)`
+  color: white;
+  border-radius: 25px;
+  width: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  margin: 0px;
+  padding: 0px;
+  text-transform: capitalize;
+  `
 
 export const DivProgressStats = styled.div<{
   percent: string | number;
@@ -236,3 +250,4 @@ export const LinkArrow = styled(Link)`
   color: white;
   font-size: 30px;
 `;
+

@@ -24,8 +24,9 @@ import {
   PokemonNameH1,
   Spans,
   TitleDetail,
+  PokeTipo
 } from "./Detail.styles";
-import { DetailDTO } from "../../models/PokemonActions";
+import { PokemonsDetailsDTO } from "../../models/PokemonActions";
 import { FaWeight, FaRulerVertical  } from "react-icons/fa";
 import loadingImg from "../../images/loading.gif";
 import Error from "../../components/error/Error";
@@ -86,7 +87,7 @@ function Detail(reducer: any) {
 
   return (
     <>
-      {pokemonById.map((poke: DetailDTO) => {
+      {pokemonById.map((poke: PokemonsDetailsDTO) => {
         return (
           <ColorDetail type={poke.types[0].type.name} key={poke.id}>
             <TitleDetail>
@@ -111,7 +112,7 @@ function Detail(reducer: any) {
             </ImgDetailDiv>
             <InfoDetailContainer>
               <DivType type={poke.types[0].type.name}>
-                <p>{poke.types[0].type.name}</p>
+              <PokeTipo type ={poke.types[0].type.name}><p>{poke.types[0].type.name}</p></PokeTipo>
                 <h2>About</h2>
               </DivType>
               <InfoDetailDescript>

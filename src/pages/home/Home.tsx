@@ -49,7 +49,6 @@ function Home(reducer: any) {
   }, [pokemonsDetails]);
 
   const setupNavigate = (poke: pokeDTO) => {
-    console.log(poke, "poke");
     const pokeSelecionado = pokemonsDetails.filter(
       (e: pokeSelecionadoDTO) => e.name === poke.value
     );
