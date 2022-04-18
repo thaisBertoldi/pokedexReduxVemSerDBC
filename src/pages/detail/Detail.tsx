@@ -83,7 +83,7 @@ function Detail(reducer: any) {
     <>
       {pokemonById.map((poke: PokemonsDetailsDTO) => {
         return (
-          <ColorDetail color={Color[poke.types[0].type.name]}>
+          <ColorDetail color={Color[poke.types[0]?.type.name]}>
             <TitleDetail>
               <LinkArrow to="/">
                 <FaArrowLeft />

@@ -1,7 +1,9 @@
 import axios from "axios";
+import { AppDispatch } from "..";
 import { api } from "../../api";
+import { InitialDTO } from "../../models/PokemonActions";
 
-export const getPokemon = async (state: any, dispatch: any) => {
+export const getPokemon = async (state: InitialDTO, dispatch: AppDispatch) => {
   try {
     const { data } = await api.get("/?offset=0&limit=160");
     const obj = {
