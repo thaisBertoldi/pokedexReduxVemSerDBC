@@ -85,7 +85,7 @@ function Detail(reducer: any) {
     <>
       {pokemonById.map((poke: PokemonsDetailsDTO) => {
         return (
-          <ColorDetail type={poke.types[0].type.name} key={poke.id}>
+          <ColorDetail color={Color[poke.types[0].type.name]}>
             <TitleDetail>
               <LinkArrow to="/">
                 <FaArrowLeft />
@@ -107,8 +107,8 @@ function Detail(reducer: any) {
               />
             </ImgDetailDiv>
             <InfoDetailContainer>
-              <DivType type={poke.types[0].type.name}>
-              <PokeTipo type ={poke.types[0].type.name}><p>{poke.types[0].type.name}</p></PokeTipo>
+              <DivType color={Color[poke.types[0].type.name]}>
+              <PokeTipo color ={Color[poke.types[0].type.name]}><p>{poke.types[0].type.name}</p></PokeTipo>
                 <h2>About</h2>
               </DivType>
               <InfoDetailDescript>
@@ -136,7 +136,7 @@ function Detail(reducer: any) {
                   <p>{description}</p>
                 </div>
               </InfoDetailDescript>
-              <DivType type={poke.types[0].type.name}>
+              <DivType color={Color[poke.types[0].type.name]}>
                 <h2>Base Stats</h2>
               </DivType>
               <InfoDetailText>
