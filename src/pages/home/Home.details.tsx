@@ -1,7 +1,7 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
+import Select from "react-select";
 import { Link } from "react-router-dom";
 import { CgPokemon } from 'react-icons/cg';
-import Select from "react-select";
 
 export const FullPageHome = styled.div`
   width:1000px;

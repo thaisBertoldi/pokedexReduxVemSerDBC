@@ -1,7 +1,4 @@
 import styled, { css } from "styled-components";
-import { Link } from "react-router-dom";
-import { CgPokemon } from "react-icons/cg";
-import Select from "react-select";
 
 export const ColorPokemon = styled.div<{ type: any }>`
   width: 300px;

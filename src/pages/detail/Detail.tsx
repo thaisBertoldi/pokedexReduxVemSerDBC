@@ -1,10 +1,8 @@
-import { getPokemon } from "../../store/actions/PokemonActions";
+import axios from "axios";
 import { connect, RootStateOrAny } from "react-redux";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { FaArrowLeft } from "react-icons/fa";
-import imgPokeball from "../../images/Pokeball.png";
-import axios from "axios";
+import { FaArrowLeft, FaWeight, FaRulerVertical  } from "react-icons/fa";
 import {
   AllInfoESpan,
   ColorDetail,
@@ -26,11 +24,12 @@ import {
   TitleDetail,
   PokeTipo
 } from "./Detail.styles";
-import { PokemonsDetailsDTO } from "../../models/PokemonActions";
-import { FaWeight, FaRulerVertical  } from "react-icons/fa";
+import imgPokeball from "../../images/Pokeball.png";
 import loadingImg from "../../images/loading.gif";
 import Error from "../../components/error/Error";
 import Color from "../../consts/colorEnums";
+import { PokemonsDetailsDTO } from "../../models/PokemonActions";
+import { getPokemon } from "../../store/actions/PokemonActions";
 import {CalculaAltura, CalculaPeso, HashtagIds} from "../../utils";
 
 function Detail(reducer: any) {

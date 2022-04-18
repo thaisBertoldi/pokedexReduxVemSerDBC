@@ -1,7 +1,6 @@
-import { getPokemon } from "../../store/actions/PokemonActions";
+import { useNavigate } from "react-router-dom";
 import { connect, RootStateOrAny } from "react-redux";
 import { useEffect, useState } from "react";
-import { ColorPokemon, ImgHome, NamePokemon } from "../../AllPages.styles";
 import {
   FullPageHome,
   ContainerPokemon,
@@ -13,7 +12,6 @@ import {
   SelectDiv,
   DivImgLoading,
 } from "./Home.details";
-import { useNavigate } from "react-router-dom";
 import {
   PokemonsDetailsDTO,
   sortDTO,
@@ -22,7 +20,9 @@ import {
 } from "../../models/PokemonActions";
 import loadingImg from "../../images/loading.gif";
 import Error from "../../components/error/Error";
+import { ColorPokemon, ImgHome, NamePokemon } from "../../AllPages.styles";
 import { HashtagIds } from "../../utils";
+import { getPokemon } from "../../store/actions/PokemonActions";
 
 function Home(reducer: any) {
   const { pokemonsToList, dispatch, pokemonsDetails, loading, error } = reducer;
