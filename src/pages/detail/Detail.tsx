@@ -26,18 +26,18 @@ import {
   TitleDetail,
   PokeTipo
 } from "./Detail.styles";
-import { PokemonsDetailsDTO, ColorDTO } from "../../models/PokemonActions";
+import { PokemonsDetailsDTO } from "../../models/PokemonActions";
 import { FaWeight, FaRulerVertical  } from "react-icons/fa";
 import loadingImg from "../../images/loading.gif";
 import Error from "../../components/error/Error";
 import Color from "../../consts/colorEnums";
+import {CalculaAltura, CalculaPeso, HashtagIds} from "../../utils";
 
 function Detail(reducer: any) {
   const { pokemonsToList, dispatch, pokemonsDetails, loading, error } = reducer;
   const { id } = useParams();
   const [pokemonById, setPokemonById] = useState([]);
   const [description, setDescription] = useState<string | null>("");
-  const [color, setColor] = useState<ColorDTO>({name: '', url: ''})
 
   useEffect(() => {
     if (pokemonsDetails.length < 1) {
@@ -62,7 +62,6 @@ function Detail(reducer: any) {
       const { data } = await axios.get(
         `https://pokeapi.co/api/v2/pokemon-species/${id}`
       );
-      setColor(data.color)
       setDescription(data.flavor_text_entries[Math.floor(Math.random() * 10)].flavor_text);
     } catch (error) {
       console.log(error);
@@ -92,11 +91,7 @@ function Detail(reducer: any) {
               </LinkArrow>
               <PokemonNameH1>{poke.name}</PokemonNameH1>
               <p>
-                {poke.id < 10
-                  ? `#00${poke.id}`
-                  : poke.id < 100
-                  ? `#0${poke.id}`
-                  : `#${poke.id}`}
+                {HashtagIds(poke.id)}
               </p>
             </TitleDetail>
             <ImgPokeball src={imgPokeball} />
@@ -115,13 +110,13 @@ function Detail(reducer: any) {
                 <AllInfoESpan>
                   <InfoESpan>
                     <FaWeight />
-                    <p>{(poke.weight*100)/1000} kg</p>
+                    <p>{CalculaPeso(poke.weight)} kg</p>
                     <Spans margin="0">Weight</Spans>
                   </InfoESpan>
 
                   <InfoESpan>
                     <FaRulerVertical />
-                    <p>{(poke.height*10)/100} m</p>
+                    <p>{CalculaAltura(poke.height)} m</p>
                     <Spans margin="0">Height</Spans>
                   </InfoESpan>
 
@@ -149,15 +144,15 @@ function Detail(reducer: any) {
                   <p>SPD</p>
                 </div>
                 <div>
-                  {poke.stats.map((e: any, index: number) => {
-                    return <p key={index}>{e.base_stat}</p>;
+                  {poke.stats.map((stat: any, index: number) => {
+                    return <p key={index}>{stat.base_stat}</p>;
                   })}
                 </div>
                 <InfoBarraHorizontal>
-                  {poke.stats.map((e: any, index: number) => {
+                  {poke.stats.map((stat: any, index: number) => {
                     return (
                       <DivProgressStats key={index}
-                        percent={`${e.base_stat}`} color={Color[poke.types[0].type.name]}
+                        percent={`${stat.base_stat}`} color={Color[poke.types[0].type.name]}
                       ></DivProgressStats>
                     );
                   })}

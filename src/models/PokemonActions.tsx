@@ -42,5 +42,4 @@ export interface pokeSelecionadoDTO {
 
 export interface ColorDTO {
   name: string;
-  url: string;
 }
