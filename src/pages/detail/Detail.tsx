@@ -30,6 +30,7 @@ import { PokemonsDetailsDTO, ColorDTO } from "../../models/PokemonActions";
 import { FaWeight, FaRulerVertical  } from "react-icons/fa";
 import loadingImg from "../../images/loading.gif";
 import Error from "../../components/error/Error";
+import Color from "../../consts/colorEnums";
 
 function Detail(reducer: any) {
   const { pokemonsToList, dispatch, pokemonsDetails, loading, error } = reducer;
@@ -156,7 +157,7 @@ function Detail(reducer: any) {
                   {poke.stats.map((e: any, index: number) => {
                     return (
                       <DivProgressStats key={index}
-                        percent={`${e.base_stat}`} color={color.name}
+                        percent={`${e.base_stat}`} color={Color[poke.types[0].type.name]}
                       ></DivProgressStats>
                     );
                   })}
