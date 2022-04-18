@@ -22,6 +22,7 @@ import {
 } from "../../models/PokemonActions";
 import loadingImg from "../../images/loading.gif";
 import Error from "../../components/error/Error";
+import { HashtagIds } from "../../utils";
 
 function Home(reducer: any) {
   const { pokemonsToList, dispatch, pokemonsDetails, loading, error } = reducer;
@@ -83,11 +84,7 @@ function Home(reducer: any) {
               <ColorPokemon key={pokemon.id} type={pokemon.types[0].type.name}>
                 <div>
                   <p>
-                    {pokemon.id < 10
-                      ? `#00${pokemon.id}`
-                      : pokemon.id < 100
-                      ? `#0${pokemon.id}`
-                      : `#${pokemon.id}`}
+                    {HashtagIds(pokemon.id)}
                   </p>
                 </div>
                 <StyledLink to={`/detail/${pokemon.id}`}>
