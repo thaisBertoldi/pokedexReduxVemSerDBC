@@ -14,9 +14,19 @@ export interface InitialDTO {
 export interface PokemonsDetailsDTO {
   id: number;
   name: string;
-  abilities: [{}];
+  abilities: [
+    {
+      ability: {
+        name: string;
+      };
+    }
+  ];
   height: number;
-  stats: [{}];
+  stats: [
+    {
+      base_stat: number;
+    }
+  ];
   weight: number;
   types: [
     {
@@ -42,4 +52,13 @@ export interface pokeSelecionadoDTO {
 
 export interface ColorDTO {
   name: string;
+}
+export interface PokemonsFilterDetail {
+  id: string | number;
+}
+
+export interface PokemonToListDTO {
+  pokemonsToList: [{
+    url: string,
+  }]
 }

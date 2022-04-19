@@ -24,7 +24,7 @@ import { ColorPokemon, ImgHome, NamePokemon } from "../../AllPages.styles";
 import { HashtagIds } from "../../utils";
 import { getPokemon } from "../../store/actions/PokemonActions";
 
-function Home(reducer: any) {
+function Home(reducer: RootStateOrAny) {
   const { pokemonsToList, dispatch, pokemonsDetails, loading, error } = reducer;
   const [searchedPokemons, setSearchedPokemons] = useState([]);
   const navigate = useNavigate();
@@ -36,8 +36,8 @@ function Home(reducer: any) {
   }, []);
 
   useEffect(() => {
-    pokemonsDetails.sort((a: sortDTO, b: sortDTO) => {
-      return a.id - b.id;
+    pokemonsDetails.sort((pokeA: sortDTO, pokeB: sortDTO) => {
+      return pokeA.id - pokeB.id;
     });
     mapOptions();
   }, [pokemonsDetails]);

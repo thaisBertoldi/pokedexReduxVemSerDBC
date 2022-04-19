@@ -28,11 +28,11 @@ import imgPokeball from "../../images/Pokeball.png";
 import loadingImg from "../../images/loading.gif";
 import Error from "../../components/error/Error";
 import Color from "../../consts/colorEnums";
-import { PokemonsDetailsDTO } from "../../models/PokemonActions";
+import { PokemonsDetailsDTO, PokemonsFilterDetail } from "../../models/PokemonActions";
 import { getPokemon } from "../../store/actions/PokemonActions";
 import {CalculaAltura, CalculaPeso, HashtagIds} from "../../utils";
 
-function Detail(reducer: any) {
+function Detail(reducer: RootStateOrAny) {
   const { pokemonsToList, dispatch, pokemonsDetails, loading, error } = reducer;
   const { id } = useParams();
   const [pokemonById, setPokemonById] = useState([]);
@@ -46,10 +46,10 @@ function Detail(reducer: any) {
   }, [pokemonsToList]);
 
   const getPokemonById = () => {
-    const arrPokemonById = pokemonsDetails.filter((e: any) => {
-      if (e.id === Number(id)) {
-         getDescriptionPokemon(e.id);
-        return e;
+    const arrPokemonById = pokemonsDetails.filter((pokeById: PokemonsFilterDetail) => {
+      if (pokeById.id === Number(id)) {
+         getDescriptionPokemon(pokeById.id);
+        return pokeById;
       }
       return null;
     });
@@ -120,8 +120,8 @@ function Detail(reducer: any) {
                   </InfoESpan>
 
                   <InfoESpanSemBorda>
-                    {poke.abilities.map((ability: any) => {
-                      return <PMoves>{ability.ability.name}</PMoves>;
+                    {poke.abilities.map((ability, index: number) => {
+                      return <PMoves key={index}>{ability.ability.name}</PMoves>;
                     })}
                     <Spans margin="23px">Moves</Spans>
                   </InfoESpanSemBorda>
@@ -143,12 +143,12 @@ function Detail(reducer: any) {
                   <p>SPD</p>
                 </div>
                 <div>
-                  {poke.stats.map((stat: any, index: number) => {
+                  {poke.stats.map((stat, index: number) => {
                     return <p key={index}>{stat.base_stat}</p>;
                   })}
                 </div>
                 <InfoBarraHorizontal>
-                  {poke.stats.map((stat: any, index: number) => {
+                  {poke.stats.map((stat, index: number) => {
                     return (
                       <DivProgressStats key={index}
                         percent={`${stat.base_stat}`} color={Color[poke.types[0].type.name]}
